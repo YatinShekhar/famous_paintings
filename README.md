@@ -1,1 +1,2 @@
-# famous_paintings
+# Famous Paintings
+## Project Overview
