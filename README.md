@@ -4,6 +4,24 @@
 
 The analysis can be done on various aspects and insights can be found such as artist demographics, artwork characteristics, pricing trends, museum locations, and subject matter. These insights can also inform decisions related to curation, marketing, and investment in the art world, helping stakeholders better understand and leverage the dynamics of artistic creation, exhibition, and consumption.
 
+## Data Cleaning
+It is our priority to transform and structure the data with the intent of improving data quality and making it more consumable and useful for analytics. I have used various commands like alter, update, modify to clean the table and delete duplicate rows from the desired tables.
+
+### Method for deleting duplicates
+
+``` sql
+alter table table_name
+add column row_num int primary key auto_increment;
+
+with cte as (
+select row_num, row_number() over(partition by column_name order by row_num) as rn
+from table_name)
+delete from table_name where row_num not in (select row_num from cte where rn = 1);
+
+alter table table_name
+drop column row_num
+```
+
 ## Analysis Approach
 
 The follwing questions can be considered as key insights on the basis of which stakeholders in the art industry can make informed decisions to enhance audience engagement, optimize resource allocation, and drive sustainable growth and success.
